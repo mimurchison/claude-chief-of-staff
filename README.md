@@ -1,26 +1,32 @@
 # AI Chief of Staff
 
-**Your personal AI operating system built on Claude Code.**
+**The system I built to run [Ada](https://ada.cx) at 2x speed.**
 
-Turn Claude into a proactive chief of staff that manages your inbox, protects your time, deepens your relationships, and keeps you focused on what matters most.
+I'm [Mike Murchison](https://linkedin.com/in/mikemurchison), CEO of [Ada](https://ada.cx) — the agentic customer experience platform. Over the past few months, I've been building something on Claude Code that fundamentally changed how I work: an AI chief of staff that connects to every tool I use, knows my priorities and relationships, and operates 24/7 in the background.
+
+A lot of people have been asking about the setup — at the Claude Code meetup, in conversations with other CEOs, and across our team at Ada where we've been building AI-native operations into how we run the company. So I'm open-sourcing it for you to try, adapt, and improve.
+
+This repo gives you the same foundation. Your context, your goals, your voice.
+
+> **Demo video coming soon.** I'll be adding a walkthrough recording shortly.
 
 ---
 
 ## What It Does
 
-AI Chief of Staff transforms Claude Code from a reactive assistant into an always-on operating system organized around four pillars:
+Four pillars. One system.
 
-### 1. Communicate Faster
-Triage your inbox across email, Slack, and messaging. Get draft responses written in your voice, prioritized by urgency. Clear your inbox in minutes instead of hours.
+### 1. Communicate
+Triage your inbox across email, Slack, and messaging. Get draft responses written in your voice, prioritized by who matters most. I went from 90 minutes of morning inbox processing to about 5.
 
-### 2. Stay Focused on Goals
-Define your quarterly objectives. Every recommendation, scheduling decision, and priority call is filtered through what you said matters most. Claude pushes back when you drift.
+### 2. Learn
+Morning briefings, meeting prep, market signals — all automated. Before every meeting, Claude pulls context from every source: past emails, meeting notes, CRM data, calendar history. You walk in prepared without doing the prep.
 
 ### 3. Deepen Relationships
-Maintain a personal CRM of your key contacts. Track interaction history, surface when relationships go stale, and get prep notes before every meeting. Never let an important relationship decay.
+A personal CRM that builds itself. 160+ contacts tracked, auto-enriched every 15 minutes across all channels. Staleness alerts when important relationships go quiet. Suggested outreach with context. I never forget to follow up.
 
-### 4. Execute Relentlessly
-Task management with teeth. Claude doesn't just remind you — it helps execute. Draft the email, do the research, prep the document. Zero late tasks is the goal.
+### 4. Achieve Goals
+Define your quarterly objectives. Every triage decision, scheduling recommendation, and task prioritization is filtered through what you said matters most. Claude tells me when my calendar doesn't match my goals.
 
 ---
 
@@ -29,60 +35,51 @@ Task management with teeth. Claude doesn't just remind you — it helps execute.
 ### Prerequisites
 
 - [Claude Code CLI](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
-- Gmail MCP server (for email access)
+- Gmail MCP server (for email)
 - Google Calendar MCP server (for scheduling)
 
-### 3 Steps to Get Running
+### 3 Steps
 
 ```bash
-# 1. Clone this repo
-git clone https://github.com/YOUR_USERNAME/claude-chief-of-staff.git
+# 1. Clone
+git clone https://github.com/mimurchison/claude-chief-of-staff.git
 cd claude-chief-of-staff
 
-# 2. Run the installer
+# 2. Install
 chmod +x install.sh
 ./install.sh
 
-# 3. Start Claude Code and try your first command
+# 3. Try it
 claude
 # Then type: /gm
 ```
 
-That's it. You'll get your first morning briefing in under 15 minutes from clone.
+First morning briefing in under 15 minutes from clone.
 
 ---
 
 ## Features
 
 ### Morning Briefing (`/gm`)
-Start every day with a structured briefing: today's calendar, priority tasks, urgent messages, and upcoming deadlines. Know exactly what matters before you open your inbox.
+Start every day knowing exactly what matters. Calendar, tasks, urgent messages, signals — before you open your inbox.
 
 ### Inbox Triage (`/triage`)
-Scan all connected channels (email, Slack, messaging) and get a prioritized list of items needing your attention. Each item comes with a draft response written in your voice.
+Scan all connected channels and get a prioritized list with draft responses.
 
 | Tier | Action | Example |
 |------|--------|---------|
-| **Tier 1** | Respond NOW | CEO asking for input on board deck |
-| **Tier 2** | Handle today | Customer escalation from your team |
-| **Tier 3** | FYI / archive | Newsletter, automated notification |
+| **Tier 1** | Respond NOW | Board member asking for input |
+| **Tier 2** | Handle today | Customer escalation |
+| **Tier 3** | FYI / archive | Newsletters, notifications |
 
 ### Task Management (`/my-tasks`)
-Track tasks with due dates, goal alignment, and proactive execution. Claude helps complete tasks, not just track them.
-
-```
-/my-tasks add "Draft Q1 board update" --due 2026-03-15 --goal "board-communication"
-/my-tasks list
-/my-tasks execute
-```
+Tasks with execution, not just tracking. Claude drafts the email, does the research, preps the document.
 
 ### Contact Enrichment (`/enrich`)
-Build and maintain a personal CRM. Track when you last spoke with key contacts, get alerts when relationships go stale, and prep for meetings with full context.
+Auto-scans email, Slack, WhatsApp, calendar, and meeting notes to build rich relationship profiles. Alerts you when contacts go stale. Suggests what to talk about.
 
-### Smart Scheduling
-Every meeting proposal is checked against your goals, availability, and energy patterns. Claude explains *why* a time slot is optimal, not just that it's open.
-
-### Goal-Aligned Prioritization
-Define your objectives in `goals.yaml`. Claude references them constantly — when triaging email, proposing meetings, or deciding what task to work on next.
+### Goal-Aligned Everything
+Your `goals.yaml` is the source of truth. Claude references it constantly — triaging email, proposing meetings, scoring tasks. It pushes back when your time allocation drifts from your stated priorities.
 
 ---
 
@@ -90,7 +87,7 @@ Define your objectives in `goals.yaml`. Claude references them constantly — wh
 
 ```
 claude-chief-of-staff/
-├── CLAUDE.md                    # Your AI operating system config
+├── CLAUDE.md                    # Your AI operating system — customize this
 ├── install.sh                   # One-command setup
 ├── goals.yaml                   # Quarterly objectives template
 ├── my-tasks.yaml                # Task tracking
@@ -112,7 +109,7 @@ claude-chief-of-staff/
 
 ## MCP Servers
 
-AI Chief of Staff works with whatever MCP servers you have connected. More servers = more capability.
+More servers = more capability. Start with the essentials, add over time.
 
 | Server | Required? | What It Enables |
 |--------|-----------|-----------------|
@@ -121,7 +118,7 @@ AI Chief of Staff works with whatever MCP servers you have connected. More serve
 | Slack | Recommended | Slack triage, channel monitoring |
 | WhatsApp | Optional | WhatsApp message triage |
 | iMessage | Optional | iMessage triage (macOS only) |
-| Granola | Optional | Meeting notes search |
+| Granola | Optional | Meeting notes context |
 | PostHog | Optional | Product analytics |
 
 See [docs/mcp-servers.md](docs/mcp-servers.md) for installation instructions.
@@ -130,95 +127,52 @@ See [docs/mcp-servers.md](docs/mcp-servers.md) for installation instructions.
 
 ## Customization
 
-The power of this system is in how deeply you customize it. The `CLAUDE.md` file is your AI operating system — it defines:
+The `CLAUDE.md` file is the core. It defines:
 
 - **Who you are** and what you care about
-- **How you write** so drafts sound like you
+- **How you write** so every draft sounds like you
 - **Your goals** so Claude knows what matters
-- **Your constraints** (e.g., "home by 6pm for dinner")
+- **Your constraints** (mine: home by 5:30 for dinner)
 - **Your relationships** and how to manage them
 
-See [docs/customization.md](docs/customization.md) for a complete guide to making it yours.
+The longer you use it, the better it gets. Context compounds.
+
+See [docs/customization.md](docs/customization.md) for the full guide.
 
 ---
 
 ## Philosophy
 
-This system is built on a few core beliefs:
+A few beliefs this system is built on:
 
-1. **Your AI should push you, not just serve you.** A great chief of staff challenges priorities, says "no" to low-leverage work, and keeps you honest about where your time goes.
+1. **AI should push you, not just serve you.** A great chief of staff challenges priorities, says "no" to low-leverage work, and keeps you honest about where your time goes.
 
-2. **Clarity beats comprehensiveness.** Fewer, clearer priorities. Explicit tradeoffs. Fast decisions with flagged assumptions rather than slow decisions with perfect information.
+2. **Clarity beats comprehensiveness.** Fewer, clearer priorities. Explicit tradeoffs. Fast decisions with flagged assumptions.
 
-3. **Systems compound.** Every interaction improves the system. Contact notes get richer. Writing style gets more accurate. Goal tracking gets more precise. The longer you use it, the better it gets.
+3. **Systems compound.** Every interaction makes the system smarter. Contact notes get richer. Writing style gets more accurate. The longer you use it, the better it gets.
 
-4. **Ship, don't polish.** Draft responses should be send-ready. Task outputs should be usable immediately. Bias toward finishing loops, not expanding scope.
-
----
-
-## Examples
-
-### Morning Briefing
-```
-> /gm
-
-Good morning. Here's your day:
-
-CALENDAR (4 meetings)
-- 9:00am  Revenue forecast review (45 min)
-- 11:00am  1:1 with Sarah (30 min)
-- 2:00pm  Product roadmap sync (60 min)
-- 4:00pm  Customer call — Acme Corp (30 min)
-
-TASKS DUE TODAY
-- Draft quarterly board update (goal: board-communication)
-- Review hiring pipeline spreadsheet
-
-URGENT (Tier 1)
-- Email from CFO re: budget approval — needs response by noon
-
-APPROACHING
-- Team offsite planning due in 3 days (no progress yet)
-```
-
-### Inbox Triage
-```
-> /triage
-
-Scanned: Gmail (23 new), Slack (8 DMs), WhatsApp (3 messages)
-
-TIER 1 — Respond Now
-1. Sarah Chen (VP Sales) — Deal approval needed for Acme, $450K
-   Draft: "Sarah, approved. Let's close this week. Loop me in if they push on terms."
-
-2. Board member — Requesting updated metrics before Thursday meeting
-   Draft: "Will have the updated deck to you by EOD Wednesday."
-
-TIER 2 — Handle Today
-3. Recruiter — Final candidate for engineering lead role
-4. Customer success — Escalation from long-time customer
-
-TIER 3 — FYI
-5-8. Newsletter, automated reports, LinkedIn notifications
-   → Auto-archived
-```
+4. **Ship, don't polish.** Drafts should be send-ready. Outputs should be usable immediately. Bias toward closing loops.
 
 ---
 
 ## Contributing
 
-This is an open framework. If you build useful commands, improve the CLAUDE.md template, or add MCP server guides, contributions are welcome.
+This is early and evolving. If you build useful commands, improve the templates, or add MCP server guides — contributions are very welcome. I'd love to hear what you build with it.
 
 1. Fork the repo
 2. Create a feature branch
 3. Submit a pull request
 
+Or just open an issue with feedback.
+
 ---
 
-## License
+## Stay Connected
+
+- [@mimurchison](https://twitter.com/mimurchison) on Twitter/X
+- [Mike Murchison](https://linkedin.com/in/mikemurchison) on LinkedIn
+- [Ada](https://ada.cx) — the agentic customer experience platform
+
+---
 
 MIT License. See [LICENSE](LICENSE) for details.
-
----
-
-Built with [Claude Code](https://docs.anthropic.com/en/docs/claude-code) by Anthropic.
