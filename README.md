@@ -6,7 +6,7 @@ A lot of people have been asking about the setup — at the Claude Code meetup, 
 
 This repo gives you the same foundation. Your context, your goals, your voice.
 
-> **Demo video coming soon.** I'll be adding a walkthrough recording shortly.
+Watch the walkthrough and demo [here](https://x.com/mimurchison/status/2022368529417224480)
 
 ---
 
