@@ -1,12 +1,11 @@
 # My AI Chief of Staff
 
-I'm [Mike Murchison](https://linkedin.com/in/mikemurchison), CEO of [Ada](https://ada.cx) — the agentic customer experience platform. Over the past few months, I've been building something on Claude Code that has fundamentally changed how I work: an AI chief of staff that connects to every tool I use, knows my priorities and relationships, and operates 24/7 in the background.
+I'm [Sumo](https://linkedin.com/in/sumo), Head of Growth at [Crew AI] (https://crewai.com) — the multi agent platform. Over the past few months, I've been building something on Claude Code that has fundamentally changed how I work: an AI chief of staff that connects to every tool I use, knows my priorities and relationships, and operates 24/7 in the background.
 
 A lot of people have been asking about the setup — at the Claude Code meetup, in conversations with other CEOs, and across our team at Ada where we've been building AI-native operations into how we run the company. So I'm open-sourcing it for you to try, adapt, and improve.
 
 This repo gives you the same foundation. Your context, your goals, your voice.
 
-Watch the walkthrough and demo [here](https://x.com/mimurchison/status/2022368529417224480)
 
 ---
 
@@ -61,6 +60,9 @@ First morning briefing in under 15 minutes from clone.
 ### Morning Briefing (`/gm`)
 Start every day knowing exactly what matters. Calendar, tasks, urgent messages, signals — before you open your inbox.
 
+### Email Summary (`/summarize-emails`)
+Quick inbox overview without drafting responses. Get a structured summary of your emails categorized by urgency — perfect for fast inbox checks throughout the day. Takes 30-60 seconds.
+
 ### Inbox Triage (`/triage`)
 Scan all connected channels and get a prioritized list with draft responses.
 
@@ -94,6 +96,7 @@ claude-chief-of-staff/
 │   └── example-contact.md       # Contact file template
 ├── commands/
 │   ├── gm.md                    # Morning briefing
+│   ├── summarize-emails.md      # Quick email summary
 │   ├── triage.md                # Inbox triage
 │   ├── my-tasks.md              # Task management
 │   └── enrich.md                # Contact enrichment
@@ -165,11 +168,7 @@ Or just open an issue with feedback.
 
 ---
 
-## Stay Connected
 
-- [@mimurchison](https://twitter.com/mimurchison) on Twitter/X
-- [Mike Murchison](https://linkedin.com/in/mikemurchison) on LinkedIn
-- [Ada](https://ada.cx) — the agentic customer experience platform
 
 ---
 
