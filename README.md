@@ -60,6 +60,9 @@ First morning briefing in under 15 minutes from clone.
 ### Morning Briefing (`/gm`)
 Start every day knowing exactly what matters. Calendar, tasks, urgent messages, signals — before you open your inbox.
 
+### Email Summary (`/summarize-emails`)
+Quick inbox overview without drafting responses. Get a structured summary of your emails categorized by urgency — perfect for fast inbox checks throughout the day. Takes 30-60 seconds.
+
 ### Inbox Triage (`/triage`)
 Scan all connected channels and get a prioritized list with draft responses.
 
@@ -93,6 +96,7 @@ claude-chief-of-staff/
 │   └── example-contact.md       # Contact file template
 ├── commands/
 │   ├── gm.md                    # Morning briefing
+│   ├── summarize-emails.md      # Quick email summary
 │   ├── triage.md                # Inbox triage
 │   ├── my-tasks.md              # Task management
 │   └── enrich.md                # Contact enrichment
