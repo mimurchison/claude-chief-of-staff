@@ -143,6 +143,51 @@ npx @anthropic-ai/claude-code mcp add imessage
 
 ---
 
+### Sybill
+
+Enables: AI meeting summaries, transcripts, action items, participant insights, sentiment analysis
+
+Sybill uses a custom MCP server built at Quandri. It has two components:
+1. A **webhook receiver** that stores Sybill meeting data locally via Svix webhooks
+2. An **MCP server** that exposes query tools over the stored data
+
+**Installation:**
+
+```bash
+# 1. Build the server (one time)
+cd /Users/abhiprajapati/Documents/work/quandri/sybill-mcp
+npm install && npm run build
+
+# 2. Add the MCP server to Claude Code
+claude mcp add sybill -- node /Users/abhiprajapati/Documents/work/quandri/sybill-mcp/dist/index.js serve
+
+# 3. Set webhook secret and start the webhook listener (run as background service)
+export SYBILL_WEBHOOK_SECRET=whsec_...  # Get from Sybill dashboard
+node /Users/abhiprajapati/Documents/work/quandri/sybill-mcp/dist/index.js webhook
+```
+
+**Environment variables:**
+- `SYBILL_WEBHOOK_SECRET` — Svix secret from Sybill dashboard (required for webhook)
+- `SYBILL_DB_PATH` — SQLite path (default: `~/.sybill-mcp/data.db`)
+- `SYBILL_WEBHOOK_PORT` — Webhook port (default: 3456)
+
+**Available tools:**
+- `list_meetings` — List recent meetings (filter by date, participant)
+- `get_meeting` — Full meeting details (summary, transcript, action items, sentiment)
+- `search_meetings` — Full-text search across meetings
+- `get_action_items` — Action items across meetings (filter by assignee)
+- `get_participant_insights` — Aggregated insights for a person across meetings
+
+**Verify it works:**
+
+```
+> List my recent meeting summaries from Sybill
+> Search meetings for "product roadmap"
+> Show action items assigned to me
+```
+
+---
+
 ### Granola
 
 Enables: Meeting notes search and retrieval

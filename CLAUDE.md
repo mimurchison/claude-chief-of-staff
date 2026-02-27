@@ -509,6 +509,7 @@ Claude is succeeding if:
 | WhatsApp | {{STATUS}} | WhatsApp triage |
 | iMessage | {{STATUS}} | iMessage triage (macOS only) |
 | Granola | {{STATUS}} | Meeting notes |
+| Sybill | {{STATUS}} | AI meeting summaries, transcripts, action items, participant insights |
 
 ### Source Routing
 
@@ -521,6 +522,7 @@ Before saying "I don't know," Claude must consider where the information would l
 | Team messages | Slack |
 | Personal messages | WhatsApp / iMessage |
 | Meeting notes | Granola |
+| Meeting summaries, transcripts, action items | Sybill |
 
 ---
 
