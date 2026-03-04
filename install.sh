@@ -124,6 +124,59 @@ for cmd in "$SCRIPT_DIR/commands/"*.md; do
     fi
 done
 
+# ── Optional: Telegram bot setup ─────────────────────────────────────────────
+echo ""
+echo -e "${BLUE}Optional: Telegram bot${NC} — message your AI Chief of Staff from your phone"
+echo ""
+read -p "Set up Telegram bot? (y/n) " -n 1 -r
+echo
+TELEGRAM_INSTALLED=false
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    TELEGRAM_DIR="$CLAUDE_DIR/telegram"
+    mkdir -p "$TELEGRAM_DIR"
+
+    copy_if_missing "$SCRIPT_DIR/telegram/cheef_bot.py"     "$TELEGRAM_DIR/cheef_bot.py"
+    copy_if_missing "$SCRIPT_DIR/telegram/requirements.txt" "$TELEGRAM_DIR/requirements.txt"
+
+    if [ ! -f "$TELEGRAM_DIR/.env" ]; then
+        cp "$SCRIPT_DIR/telegram/.env.example" "$TELEGRAM_DIR/.env.example"
+        echo "  Created: $TELEGRAM_DIR/.env.example"
+        echo -e "  ${YELLOW}Action required:${NC} Rename to .env and fill in your credentials"
+    else
+        echo -e "  ${YELLOW}Skipped (already exists):${NC} $TELEGRAM_DIR/.env"
+    fi
+
+    echo ""
+    echo -e "${GREEN}Installing Python dependencies...${NC}"
+    if command -v pip3 &> /dev/null; then
+        pip3 install -q -r "$TELEGRAM_DIR/requirements.txt"
+        echo "  Dependencies installed."
+    else
+        echo -e "  ${YELLOW}pip3 not found — install manually:${NC}"
+        echo "  pip3 install -r $TELEGRAM_DIR/requirements.txt"
+    fi
+
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        echo ""
+        read -p "Install as background service (auto-start on login)? (y/n) " -n 1 -r
+        echo
+        PLIST_DEST="$HOME/Library/LaunchAgents/com.cheef.telegram.plist"
+        sed "s|{{HOME_DIR}}|$HOME|g" "$SCRIPT_DIR/telegram/com.cheef.telegram.plist.template" > "$PLIST_DEST"
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            launchctl load "$PLIST_DEST" 2>/dev/null || true
+            echo "  Service loaded. Bot auto-starts on login."
+            echo -e "  ${YELLOW}Note:${NC} Bot won't work until you fill in $TELEGRAM_DIR/.env"
+        else
+            echo "  Plist written to: $PLIST_DEST"
+            echo "  To start later: launchctl load $PLIST_DEST"
+        fi
+    fi
+
+    TELEGRAM_INSTALLED=true
+else
+    echo "  Skipped. See docs/telegram-setup.md to add it later."
+fi
+
 # Summary
 echo ""
 echo -e "${BOLD}============================================${NC}"
@@ -139,6 +192,9 @@ echo "  my-tasks.yaml      — Task tracking"
 echo "  schedules.yaml     — Automation schedules"
 echo "  contacts/          — Contact files"
 echo "  commands/          — Skill definitions (gm, triage, my-tasks, enrich)"
+if [ "$TELEGRAM_INSTALLED" = true ]; then
+    echo "  telegram/          — Telegram bot for mobile access"
+fi
 echo ""
 echo -e "${BOLD}Next steps:${NC}"
 echo ""
@@ -158,6 +214,12 @@ echo "     > /gm            # Morning briefing"
 echo "     > /triage         # Inbox triage"
 echo "     > /my-tasks list  # See your tasks"
 echo ""
+if [ "$TELEGRAM_INSTALLED" = true ]; then
+    echo -e "  ${BLUE}5.${NC} Finish Telegram setup:"
+    echo "     Rename $CLAUDE_DIR/telegram/.env.example to .env and fill in credentials"
+    echo "     See docs/telegram-setup.md for details"
+    echo ""
+fi
 echo -e "${YELLOW}Tip:${NC} The more you customize CLAUDE.md, the better Claude performs."
 echo "     Spend 30 minutes filling in your writing style examples and team info."
 echo ""

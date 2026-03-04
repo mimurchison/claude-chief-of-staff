@@ -26,6 +26,9 @@ A personal CRM that builds itself. 160+ contacts tracked, auto-enriched every 15
 ### 4. Achieve Goals
 Define your quarterly objectives. Every triage decision, scheduling recommendation, and task prioritization is filtered through what you said matters most. Claude tells me when my calendar doesn't match my goals.
 
+### 5. Mobile Access
+Your full AI Chief of Staff in your pocket. A Telegram bot bridges your phone to the Claude Code CLI running on your Mac. All MCP servers, commands, and context — accessible from anywhere.
+
 ---
 
 ## Quick Start
@@ -97,9 +100,15 @@ claude-chief-of-staff/
 │   ├── triage.md                # Inbox triage
 │   ├── my-tasks.md              # Task management
 │   └── enrich.md                # Contact enrichment
+├── telegram/
+│   ├── cheef_bot.py                        # Telegram-to-Claude bridge
+│   ├── com.cheef.telegram.plist.template   # macOS service template
+│   ├── .env.example                        # Credentials template
+│   └── requirements.txt                    # Python dependencies
 └── docs/
     ├── setup-guide.md           # Detailed setup walkthrough
     ├── mcp-servers.md           # MCP server installation
+    ├── telegram-setup.md        # Telegram bot setup
     └── customization.md         # Make it yours
 ```
 
